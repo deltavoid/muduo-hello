@@ -2,11 +2,23 @@
 
 #dependencies
 
-
+MUDUO_DIRECTORY ?= /home/zqy/WorkSpace/Muduo/build/release-install-cpp11
+#MUDUO_DIRECTORY ?= $(HOME)/build/install
+MUDUO_INCLUDE = $(MUDUO_DIRECTORY)/include
+MUDUO_LIBRARY = $(MUDUO_DIRECTORY)/lib
 
 #toolchains
-CXXFLAGS := -g -Wall -Isrc
-LDFLAGS := 
+#CXXFLAGS := -g -Wall -Isrc
+#LDFLAGS := 
+CXXFLAGS = -std=c++11 -g -O0 \
+       -Wall -Wextra -Werror \
+	   -Wconversion -Wno-unused-parameter \
+	   -Wold-style-cast -Woverloaded-virtual \
+	   -Wpointer-arith -Wshadow -Wwrite-strings \
+	   -march=native -rdynamic \
+	   -I$(MUDUO_INCLUDE)
+
+LDFLAGS = -L$(MUDUO_LIBRARY) -lmuduo_net -lmuduo_base -lpthread -lrt
 
 
 #exectuables
